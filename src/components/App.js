@@ -12,7 +12,7 @@ const App = ({ gameStatus }) => {
         case "Draw":
             return <End />
         default:
-            return <Board />;
+            return <Board />
     }
 };
 

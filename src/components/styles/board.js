@@ -9,7 +9,7 @@ export default makeStyles(() => ({
         margin: "0 auto",
     },
     row: {
-        display: "flex"
+        display: "flex",
     },
     col: {
         margin: "5px",

@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 import reducers from "./reducers";
 
 const initialState = {
-    player: 1,
+    player: 1, // Red = 1, Yellow = 2
     board: [
        [0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0],

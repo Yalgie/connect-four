@@ -7,6 +7,7 @@ import App from './components/App';
 
 // Wrapping the app in the redux provider
 // Passing through the store for access throughout the app
+// Using MUI CSS Baseline
 ReactDOM.render(
     <Provider store={store}>
         <CssBaseline />

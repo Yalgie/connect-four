@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import useStyles from "./styles/app";
 
-
 const End = ({ gameStatus, player, resetGame }) => {
     const classes = useStyles();
     const colorPlayer = player === 1 ? "Red" : "Yellow";
