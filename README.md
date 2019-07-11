@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ba6aa968-a602-4693-aabe-fb0836b6ff3c/deploy-status)](https://app.netlify.com/sites/yalgie-connect-four/deploys)
+
 # Connect Four
 
 ## Getting Started
