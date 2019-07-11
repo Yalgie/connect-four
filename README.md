@@ -1,7 +1,7 @@
 # Connect Four
 
 ## Getting Started
-Follow these instructions to get started with a local development build or view the live app hosted on netlify here (https://yalgie-connect-four.netlify.com/)[https://yalgie-connect-four.netlify.com/].
+Follow these instructions to get started with a local development build or view the live app hosted on netlify here https://yalgie-connect-four.netlify.com/
 
 ```
 git clone https://github.com/Yalgie/connect-four.git
