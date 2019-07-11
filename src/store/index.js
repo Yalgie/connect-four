@@ -7,7 +7,17 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from "./reducers";
 
-const initialState = {};
+const initialState = {
+    turn: 1,
+    board: [
+       [0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0],
+    ]
+};
 
 export default createStore(
     reducers,
