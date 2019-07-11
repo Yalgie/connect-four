@@ -14,5 +14,5 @@ export default makeStyles(theme => ({
     },
     hover: {
         backgroundColor: 'red'
-    }
+    },
 }));

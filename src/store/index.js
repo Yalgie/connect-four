@@ -17,7 +17,8 @@ const initialState = {
        [0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0],
-    ]
+    ],
+    condition: null, // Win / Draw
 };
 
 export default createStore(

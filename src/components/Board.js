@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { placePiece } from "../store/actions";
 import useStyles from "./styles/board";
 
-const Board = ({ board, placePiece, player }) => {
+const Board = ({ board, placePiece, player, status }) => {
     // Using this to highlight all pieces in a column when hovering
     // This allows the player to visibly see which row their piece will go in
     const [activeCol, setActiveCol] = useState(null); 
@@ -26,7 +26,10 @@ const Board = ({ board, placePiece, player }) => {
                     onMouseEnter={() => setActiveCol(i)}
                     onClick={() => placePiece(i, board, player)}
                     key={i} 
-                    className={`${classes.col} ${i === activeCol ? classes.hover : null}`}>
+                    className={`${classes.col} ${i === activeCol
+                        ? classes.hover
+                        : null
+                    }`}>
                     <p data-i={cell}>{cell}</p>
                 </div>
             );
@@ -36,11 +39,11 @@ const Board = ({ board, placePiece, player }) => {
     return <Rows rows={board} />
 };
 
-// Redux Wizardry
 const mapStateToProps = state => {
     return {
         board: state.board,
-        player: state.player
+        player: state.player,
+        status: state.loading,
     }
 };
 

@@ -5,6 +5,15 @@ export default (state = {}, action) => {
                 ...state,
                 board: action.board,
             }
+        case 'SET_CONDITION':
+            return {
+                ...state,
+            }
+        case 'SET_ACTIVE_PLAYER':
+            return {
+                ...state,
+                player: action.player,
+            }
         default:
             return state;
     }
