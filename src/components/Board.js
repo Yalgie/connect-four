@@ -1,9 +1,10 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { placePiece } from "../store/actions";
 import useStyles from "./styles/board";
-
-const Board = ({ board, placePiece, player, gameStatus }) => {
+import Paper from '@material-ui/core/Paper';
+            
+const Board = ({ board, placePiece, player }) => {
     // Using this to highlight all pieces in a column when hovering
     // This allows the player to visibly see which row their piece will go in
     const [activeCol, setActiveCol] = useState(null); 
@@ -34,17 +35,18 @@ const Board = ({ board, placePiece, player, gameStatus }) => {
 
     const colorPlayer = player === 1 ? "Red" : "Yellow";
 
-    return <Fragment>
-        <h1>{colorPlayer}'s Turn</h1>
-        <div className={classes.board}><Rows rows={board} /></div>
-    </Fragment>
+    return (
+        <Paper className={classes.paperContainer}>
+            <h1>{colorPlayer}'s Turn</h1>
+            <div className={classes.board}><Rows rows={board} /></div>
+        </Paper>
+    );
 };
 
 const mapStateToProps = state => {
     return {
         board: state.board,
         player: state.player,
-        gameStatus: state.gameStatus,
     }
 };
 

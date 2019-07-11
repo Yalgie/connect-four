@@ -5,6 +5,8 @@ export default makeStyles(() => ({
         backgroundColor: "#1e62f3",
         padding: "15px",
         width: "450px",
+        borderRadius: "15px 15px 5px 5px",
+        margin: "0 auto",
     },
     row: {
         display: "flex"
@@ -28,5 +30,12 @@ export default makeStyles(() => ({
     },
     hover: {
         border: '3px solid #3cd070',
+    },
+    paperContainer: {
+        padding: "30px",
+        maxWidth: "500px",
+        margin: "0 auto",
+        marginTop: "30px",
+        marginBottom: "30px",
     },
 }));
