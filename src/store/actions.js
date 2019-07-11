@@ -15,9 +15,9 @@ const placePiece = (columnIndex, board, player) => {
     */ 
 
     return async (dispatch) => {
-        let set = false; // acts as a break; statement
+        let set = false; // acts as a break; statement (sort of)
 
-        const newBoard = board.reverse().map(rows => {
+        const newBoard = [...board].reverse().map(rows => {
             return rows.map((col, i) => {
                 if ((i === columnIndex) && (col === 0) && !set) {
                     set = true;
@@ -27,21 +27,41 @@ const placePiece = (columnIndex, board, player) => {
             });
         }).reverse();
 
-        dispatch({
-            type: "UPDATE_BOARD",
-            board: newBoard
-        });
-
-        dispatch(checkWinConditions(newBoard, player));
-
-        // Also add a checker for if the column is overflowed
-        // This could maybe be a precursor function for the draw condition
-        // Maybe a flash message or something and don't trigger the new turn "column full please select another"
+        if (!set) {
+            console.log("OVERFLOW")
+        }
+        else {
+            dispatch({
+                type: "UPDATE_BOARD",
+                board: newBoard
+            });
+            dispatch(checkDraw(newBoard));
+            dispatch(checkWinConditions(newBoard, player));
+        }
     }
 };
 
+const checkDraw = board => {
+    return async dispatch => {
+        let emptyFound = false;
+
+        board.forEach(rows => {
+            rows.forEach(col => {
+                if (col === 0) emptyFound = true;
+            });
+        });
+
+        if (!emptyFound) {
+            dispatch({
+                type: "SET_GAME_STATUS",
+                gameStatus: "Draw"
+            });
+        }
+    }
+}
+
 const checkWinConditions = (board, player) => {
-    return async (dispatch) => {
+    return async dispatch => {
         // vArr is used for counting vertical win conditions
         let vArr = [0, 0, 0, 0, 0, 0, 0];
         let setWin = false;
@@ -73,11 +93,20 @@ const checkWinConditions = (board, player) => {
                         if (rowDown[leftColIdx] === player) diagLeftCount++;
                         leftColIdx--;
                     }
-                    else if (rowDownExists && colRightExists) {
+
+                    if (rowDownExists && colRightExists) {
                         if (rowDown[rightColIdx] === player) diagRightCount++;
                         rightColIdx++;
                     }
-                };
+                }
+
+                // if ((hCount === 4) || (vArr[colIdx] === 4) || (diagRightCount === 4) || (diagLeftCount === 4)) {
+                //     win = true;
+                // } else if (col !== player) {
+                //     hCount = 0;
+                //     vArr[colIdx] = 0;
+                // }
+
 
                 if (col !== player) {
                     hCount = 0;
@@ -99,8 +128,8 @@ const checkWinConditions = (board, player) => {
 
         if (setWin) {
             dispatch({
-                type: "SET_GAME_STATE",
-                gameStatus: "won"
+                type: "SET_GAME_STATUS",
+                gameStatus: "Won",
             });
         }
     }

@@ -14,7 +14,7 @@
 - Assuming we don't need to use something like socket.io to make the game multiplayer
 
 ## Notes
-- I decided to target the 3 win conditions seperately instead of trying to make a function that could check them all at the same time, mainly because I felt like it would be quicker then trying to write a more complex method.
+- ...
 
 ## Improvements / Wishlist
 - Socket based multiplayer game where the game can be played on users own screens
