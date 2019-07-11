@@ -2,11 +2,11 @@
 
 ## Rules / Flow
 - When the page loads and the application starts, users will be presented with a modal saying 'Let's Play Connect 4' and a button saying 'Start'.
-- Once the 'Start' button is clicked, it will trigger an action to randomise who should go first between player 1 or 2. This initial 'turn' is then stored in the global redux state.
-- The active player can then hover their mouse over the different rows which will highlight.
-- Once a user clicks on the highlighted row, a piece will be placed in the first available spot in that row. This spot is determined by looping through the 2D board array in the redux state and finiding the first available spot, it will then update the state and in turn the board will re render.
+<!-- - Once the 'Start' button is clicked, the game starts and Player 1 -->
+- The active player can then hover their mouse over the different columns which will highlight.
+- Once a user clicks on the highlighted column, a piece will be placed in the first available spot in that column. This spot is determined by looping through the 2D board array in the redux state and finiding the first available spot, it will then update the board state and then run another action which checks for win conditions.
 - Players repeat this process untill a player wins, or if the board fills up and there is no winner it will end in a draw.
-- Once the game ends either via a draw or a player winning, they are presented with another model with contextualised text and a 'Reset' button which will reset redux's initial state.
+- Once the game ends either via a draw or a player winning, they are presented with another model with contextualised text and a 'Reset' button which will reset redux to it's initial state.
 
 ## Assumptions
 - Assuming it's okay to randomise the players initial turn

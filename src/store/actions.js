@@ -100,14 +100,6 @@ const checkWinConditions = (board, player) => {
                     }
                 }
 
-                // if ((hCount === 4) || (vArr[colIdx] === 4) || (diagRightCount === 4) || (diagLeftCount === 4)) {
-                //     win = true;
-                // } else if (col !== player) {
-                //     hCount = 0;
-                //     vArr[colIdx] = 0;
-                // }
-
-
                 if (col !== player) {
                     hCount = 0;
                     vArr[colIdx] = 0;
@@ -121,20 +113,56 @@ const checkWinConditions = (board, player) => {
             });
         });
 
-        dispatch({
-            type: "SET_ACTIVE_PLAYER",
-            player: player === 1 ? 2 : 1
-        });
-
         if (setWin) {
             dispatch({
                 type: "SET_GAME_STATUS",
                 gameStatus: "Won",
             });
         }
+        else {
+            dispatch({
+                type: "SET_ACTIVE_PLAYER",
+                player: player === 1 ? 2 : 1
+            });
+        }
     }
 };
 
+const startGame = player => {
+    return async dispatch => {
+        dispatch({
+            type: "SET_ACTIVE_PLAYER",
+            player: player
+        });
+        dispatch({
+            type: "SET_GAME_STATUS",
+            gameStatus: "In Progress",
+        });
+    }
+}
+
+const resetGame = () => {
+    return async dispatch => {
+        dispatch({
+            type: "SET_GAME_STATUS",
+            gameStatus: "Start",
+        });
+        dispatch({
+            type: 'UPDATE_BOARD',
+            board: [
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+            ]
+        });
+    }
+}
+
 export {
     placePiece,
+    startGame,
+    resetGame,
 };

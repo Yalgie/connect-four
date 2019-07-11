@@ -26,20 +26,17 @@ const Board = ({ board, placePiece, player, gameStatus }) => {
                     onMouseEnter={() => setActiveCol(i)}
                     onClick={() => placePiece(i, board, player)}
                     key={i} 
-                    className={`${classes.col} ${i === activeCol
-                        ? classes.hover
-                        : null
-                    }`}>
-                    <p data-i={cell}>{cell}</p>
+                    className={`${classes.col} ${i === activeCol ? classes.hover : ''} ${cell === 1 ? classes.red : '' } ${cell === 2 ? classes.yellow : '' }`}>
                 </div>
             );
         })
     };
 
+    const colorPlayer = player === 1 ? "Red" : "Yellow";
+
     return <Fragment>
-        <p>Player {player}'s Turn</p>
-        <p>Game Status: {gameStatus}</p>
-        <Rows rows={board} />
+        <h1>{colorPlayer}'s Turn</h1>
+        <div className={classes.board}><Rows rows={board} /></div>
     </Fragment>
 };
 
@@ -55,7 +52,7 @@ const mapDispatchToProps = dispatch => {
     return {
         placePiece: (columnIndex, board, player) => {
             dispatch(placePiece(columnIndex, board, player));
-        }
+        },
     }
 };
 

@@ -18,7 +18,7 @@ const initialState = {
        [0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0],
     ],
-    gameStatus: "In Progress",
+    gameStatus: "Start", // Start, In Progress, Won, Draw
 };
 
 export default createStore(
