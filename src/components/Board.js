@@ -1,25 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 import useStyles from "./styles/board";
 
-const Col = ({ cols }) => {
-    const classes = useStyles();
-
-    return cols.map(cell => {
-        return <div className={classes.col}>
-            <p data-i={cell}>{cell}</p>
-        </div>
-    })
-}
-
 const Board = ({ board }) => {
+    const [activeCol, setActiveCol] = useState(null);
     const classes = useStyles();
 
-    return board.map(cols => {
-        return <div className={classes.row}>
-            <Col cols={cols} />
+    return board.map((cols, i) => {
+        return <div key={i} className={classes.row}>
+            {cols.map((cell, x) => {
+                return <div onMouseEnter={() => {
+                    setActiveCol(x)
+                }} key={x} className={`${classes.col} ${x === activeCol ? classes.active : null}`}>
+                    <p data-i={cell}>{cell}</p>
+                </div>
+            })}
         </div>
-    })
+    });
 };
 
 // Redux Wizardry

@@ -10,8 +10,9 @@ export default makeStyles(theme => ({
         color: "#FFF",
         backgroundColor: "#333",
         textAlign: "center",
-        '&:hover': {
-            backgroundColor: "#000",
-        },
+        cursor: "pointer",
+    },
+    active: {
+        backgroundColor: 'red'
     }
 }));
