@@ -3,7 +3,6 @@ import Board from "./Board";
 import { connect } from "react-redux";
 import { resetGame } from "../store/actions";
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import useStyles from "./styles/app";
 
@@ -14,9 +13,7 @@ const End = ({ gameStatus, player, resetGame }) => {
     return (
         <Fragment>
             <Paper className={classes.paperContainer}>
-                <Typography variant="h5" component="h3">
-                    {gameStatus === "Won" ? <h1>{colorPlayer} Won!</h1> : <h1>Draw!</h1>}
-                </Typography>
+                {gameStatus === "Won" ? <h1>{colorPlayer} Won!</h1> : <h1>Draw!</h1>}
                 <Button 
                     variant="contained" 
                     onClick={() => resetGame()}
