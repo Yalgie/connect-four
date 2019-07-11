@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 // Need to manually include custom Redux Dev Tools
 // Install chrome app to see redux working in your console
@@ -8,7 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from "./reducers";
 
 const initialState = {
-    turn: 1,
+    player: 1,
     board: [
        [0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0],
@@ -22,5 +23,5 @@ const initialState = {
 export default createStore(
     reducers,
     { ...initialState },
-    composeWithDevTools()
+    composeWithDevTools(applyMiddleware(thunk))
 );

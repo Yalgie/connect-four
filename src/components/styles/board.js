@@ -12,7 +12,7 @@ export default makeStyles(theme => ({
         textAlign: "center",
         cursor: "pointer",
     },
-    active: {
+    hover: {
         backgroundColor: 'red'
     }
 }));

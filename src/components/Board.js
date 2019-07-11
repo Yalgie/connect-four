@@ -1,29 +1,55 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
+import { placePiece } from "../store/actions";
 import useStyles from "./styles/board";
 
-const Board = ({ board }) => {
-    const [activeCol, setActiveCol] = useState(null);
+const Board = ({ board, placePiece, player }) => {
+    // Using this to highlight all pieces in a column when hovering
+    // This allows the player to visibly see which row their piece will go in
+    const [activeCol, setActiveCol] = useState(null); 
     const classes = useStyles();
 
-    return board.map((cols, i) => {
-        return <div key={i} className={classes.row}>
-            {cols.map((cell, x) => {
-                return <div onMouseEnter={() => {
-                    setActiveCol(x)
-                }} key={x} className={`${classes.col} ${x === activeCol ? classes.active : null}`}>
+    const Rows = ({ rows }) => {
+        return rows.map((cols, i) => {
+            return (
+                <div key={i} className={classes.row}>
+                    <Cols cols={cols} />
+                </div>
+            );
+        });
+    };
+
+    const Cols = ({ cols }) => {
+        return cols.map((cell, i) => {
+            return (
+                <div 
+                    onMouseEnter={() => setActiveCol(i)}
+                    onClick={() => placePiece(i, board, player)}
+                    key={i} 
+                    className={`${classes.col} ${i === activeCol ? classes.hover : null}`}>
                     <p data-i={cell}>{cell}</p>
                 </div>
-            })}
-        </div>
-    });
+            );
+        })
+    };
+
+    return <Rows rows={board} />
 };
 
 // Redux Wizardry
 const mapStateToProps = state => {
     return {
         board: state.board,
+        player: state.player
     }
 };
 
-export default connect(mapStateToProps)(Board);
+const mapDispatchToProps = dispatch => {
+    return {
+        placePiece: (columnIndex, board, player) => {
+            dispatch(placePiece(columnIndex, board, player));
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
