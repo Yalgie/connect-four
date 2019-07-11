@@ -74,15 +74,15 @@ const checkWinConditions = (board, player) => {
                 let dL = 0;
 
                 for (let r = 0; r < 4; r++) {
-                    if (board[i] !== undefined && board[i][cR] !== undefined) {
-                        if (board[i][cR] === player) dR++;
+                    if (board[i+r] !== undefined && board[i][cR] !== undefined) {
+                        if (board[i+r][cR] === player) dR++;
                         cR++;
                     }
                 }
                 
                 for (let r = 0; r < 4; r++) {
-                    if (board[i] !== undefined && board[i][cL] !== undefined) {
-                        if (board[i][cL] === player) dL++;
+                    if (board[i+r] !== undefined && board[i][cL] !== undefined) {
+                        if (board[i+r][cL] === player) dL++;
                         cL--;
                     }
                 }
@@ -96,8 +96,6 @@ const checkWinConditions = (board, player) => {
         let p = 1;
 
         if (player === 1) p = 2;
-
-
         
         dispatch({
             type: "SET_ACTIVE_PLAYER",

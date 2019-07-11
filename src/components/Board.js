@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { connect } from "react-redux";
 import { placePiece } from "../store/actions";
 import useStyles from "./styles/board";
@@ -36,7 +36,10 @@ const Board = ({ board, placePiece, player, status }) => {
         })
     };
 
-    return <Rows rows={board} />
+    return <Fragment>
+        <p>Player {player}'s Turn</p>
+        <Rows rows={board} />
+    </Fragment>
 };
 
 const mapStateToProps = state => {
