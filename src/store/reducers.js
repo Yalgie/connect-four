@@ -5,9 +5,10 @@ export default (state = {}, action) => {
                 ...state,
                 board: action.board,
             }
-        case 'SET_CONDITION':
+        case 'SET_GAME_STATUS':
             return {
                 ...state,
+                gameStatus: action.gameStatus
             }
         case 'SET_ACTIVE_PLAYER':
             return {

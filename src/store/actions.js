@@ -40,83 +40,71 @@ const placePiece = (columnIndex, board, player) => {
     }
 };
 
-// Only check for the active player
 const checkWinConditions = (board, player) => {
     return async (dispatch) => {
-        let win = false;
-
-        // Horizontal
-        board.forEach(row => {
-            let hCount = 0;
-            row.forEach(col => {
-                if (col === player) hCount++;
-                if (hCount === 4) win = true;
-                else if (col !== player) hCount = 0;
-            });
-        });
-
-        // Vertical
+        // vArr is used for counting vertical win conditions
         let vArr = [0, 0, 0, 0, 0, 0, 0];
-        board.forEach(row => {
-            row.forEach((col, x) => {
-                if (col === player) vArr[x]++;
-                if (vArr[x] === 4) win = true;
-                else if (col !== player) vArr[x] = 0;
+        let setWin = false;
+
+        board.forEach((row, rowIdx) => {
+            // hCount is used for counting horizontal win conditions
+            let hCount = 0;
+
+            row.forEach((col, colIdx) => {
+                let rightColIdx = colIdx; // Used for incrementing rightward diagonal indexes
+                let leftColIdx = colIdx; // Used for decrementing rightward diagonal indexes
+                let diagRightCount = 0; // Used for counting rightward diagonal win conditions
+                let diagLeftCount = 0; // Used for counting leftward diagonal win conditions
+
+                if (col === player) {
+                    // If the active index in this column is the current player
+                    hCount++;
+                    vArr[colIdx]++;
+                };
+
+                // Checking the next 4 downward left/right diagonal cells
+                for (let downIdx = 0; downIdx < 4; downIdx++) {
+                    const rowDown = board[rowIdx + downIdx];
+                    const rowDownExists = rowDown !== undefined;
+                    const colLeftExists = row[leftColIdx] !== undefined;
+                    const colRightExists = row[rightColIdx] !== undefined;
+
+                    if (rowDownExists && colLeftExists) {
+                        if (rowDown[leftColIdx] === player) diagLeftCount++;
+                        leftColIdx--;
+                    }
+                    else if (rowDownExists && colRightExists) {
+                        if (rowDown[rightColIdx] === player) diagRightCount++;
+                        rightColIdx++;
+                    }
+                };
+
+                if (col !== player) {
+                    hCount = 0;
+                    vArr[colIdx] = 0;
+                }
+                else if ((hCount === 4) || 
+                        (vArr[colIdx] === 4) || 
+                        (diagRightCount === 4) || 
+                        (diagLeftCount === 4)) {
+                    setWin = true;
+                } 
             });
         });
 
-        // Diagonal 
-        board.forEach((row, i) => {
-            row.forEach((col, x) => {
-                let cR = x;
-                let cL = x;
-                let dR = 0;
-                let dL = 0;
-
-                for (let r = 0; r < 4; r++) {
-                    if (board[i+r] !== undefined && board[i][cR] !== undefined) {
-                        if (board[i+r][cR] === player) dR++;
-                        cR++;
-                    }
-                }
-                
-                for (let r = 0; r < 4; r++) {
-                    if (board[i+r] !== undefined && board[i][cL] !== undefined) {
-                        if (board[i+r][cL] === player) dL++;
-                        cL--;
-                    }
-                }
-
-                if ((dR === 4) || (dL === 4)) {
-                    win = true;
-                }
-            });
-        });
-
-        let p = 1;
-
-        if (player === 1) p = 2;
-        
         dispatch({
             type: "SET_ACTIVE_PLAYER",
-            player: p
+            player: player === 1 ? 2 : 1
         });
 
-        console.log(win)
+        if (setWin) {
+            dispatch({
+                type: "SET_GAME_STATE",
+                gameStatus: "won"
+            });
+        }
     }
 };
-
-// const checkHorizontal = board => {
-
-// };
-
-// const checkVertical = board => {
-
-// };
-
-// const checkDiagonal = board => {
-
-// };
 
 export {
     placePiece,
