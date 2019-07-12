@@ -43,6 +43,7 @@ The tests check if all the win conditions and draw can be met.
 ## Notes
 - Decided to use thunk to manipulate the state data before dispatching to the reducers, usually you'd only use thunk for async operations but I like how thunk structures the actions. Was also considering looking into redux-sagas but did some research and seemed a bit overkill for this use case.
 - This was basically the first time I've used jest also so excuse the tests if they're not amazing.
+- Tried to make good use of the new react hooks with setState, useSelector & useDispatch, it feels a lot cleaner cutting out a lot of the overhead.
 
 ## Improvements / Wishlist
 - Socket based multiplayer game where the game can be played on users own screens
