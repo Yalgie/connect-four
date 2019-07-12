@@ -17,10 +17,7 @@ export default function End() {
         <Fragment>
             <Paper className={classes.paperContainer}>
                 {gameStatus === "Won" ? <h1>{colorPlayer} Won!</h1> : <h1>Draw!</h1>}
-                <Button 
-                    variant="contained" 
-                    onClick={() => dispatch(resetGame())}
-                >
+                <Button variant="contained" onClick={() => dispatch(resetGame())}>
                     Play Again!
                 </Button>
             </Paper>

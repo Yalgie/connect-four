@@ -5,8 +5,11 @@ import useStyles from "./styles/board";
 import Paper from '@material-ui/core/Paper'; 
 
 export default function Board() {
-    // Using activeCol to highlight all pieces in a column when hovering
-    // This allows the player to visibly see which row their piece will go in
+    /* 
+        Using activeCol to highlight all pieces in a 
+        column when hovering. This allows the player 
+        to visibly see which row their piece will go in
+    */
     const [activeCol, setActiveCol] = useState(null); 
     const board = useSelector(state => state.board);
     const player = useSelector(state => state.player);
@@ -35,8 +38,8 @@ export default function Board() {
                     onMouseEnter={() => setActiveCol(i)}
                     onClick={() => dispatch(placePiece(i, board, player))}
                     key={i} 
-                    className={`${classes.col} ${hover} ${red} ${yellow}`}>
-                </div>
+                    className={`${classes.col} ${hover} ${red} ${yellow}`}
+                />
             );
         })
     };

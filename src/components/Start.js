@@ -12,24 +12,12 @@ export default function Start() {
     
     return (
         <Paper className={classes.paperContainer}>
-            <Typography variant="h5" component="h3">
-                Let's Play Connect 4!
-            </Typography>
-            <Typography component="p">
-                Select the colour that should go first.
-            </Typography>
-            <Button 
-                variant="contained" 
-                onClick={() => dispatch(startGame(1))} 
-                className={classes.redButton}
-            >
+            <Typography variant="h5" component="h3">Let's Play Connect 4!</Typography>
+            <Typography component="p">Select the colour that should go first.</Typography>
+            <Button variant="contained" onClick={() => dispatch(startGame(1))} className={classes.redButton}>
                 Red
             </Button>
-            <Button 
-                variant="contained" 
-                onClick={() => dispatch(startGame(2))} 
-                className={classes.yellowButton}
-            >
+            <Button variant="contained" onClick={() => dispatch(startGame(2))} className={classes.yellowButton}>
                 Yellow
             </Button>
         </Paper>
