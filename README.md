@@ -11,9 +11,20 @@ npm install
 npm start
 ```
 
+## Testing
+To run tests, make sure you've installed the dependencies using:
+
+```npm install``` 
+
+Run the test by using: 
+
+```npm run jest```
+
+The tests check if all the win conditions and draw can be met.
+
 ## Tech Architecture
 - React v16.8
-- Redux v4
+- Redux v4 w/ Thunk Middleware
 - MaterialUI v4.2
 - Create React App (CRA v3.1)
 
@@ -28,6 +39,10 @@ npm start
 ## Assumptions
 - Assuming no data needs to be saved or persisted throughout sessions
 - Assuming we don't need to use something like socket.io to make the game multiplayer
+
+## Notes
+- Decided to use thunk to manipulate the state data before dispatching to the reducers, usually you'd only use thunk for async operations but I like how thunk structures the actions. Was also considering looking into redux-sagas but did some research and seemed a bit overkill for this use case.
+- This was basically the first time I've used jest also so excuse the tests if they're not amazing.
 
 ## Improvements / Wishlist
 - Socket based multiplayer game where the game can be played on users own screens
