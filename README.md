@@ -1,7 +1,9 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ba6aa968-a602-4693-aabe-fb0836b6ff3c/deploy-status)](https://app.netlify.com/sites/yalgie-connect-four/deploys)
+
 # Connect Four
 
 ## Getting Started
-Follow these instructions to get started with a local development build or view the live app here ...
+Follow these instructions to get started with a local development build or view the live app hosted on netlify here https://yalgie-connect-four.netlify.com/
 
 ```
 git clone https://github.com/Yalgie/connect-four.git
