@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { placePiece } from "../store/actions";
 import useStyles from "./styles/board";
-import Paper from '@material-ui/core/Paper';
-            
-const Board = ({ board, placePiece, player }) => {
+import Paper from '@material-ui/core/Paper'; 
+
+export default function Board() {
     // Using activeCol to highlight all pieces in a column when hovering
     // This allows the player to visibly see which row their piece will go in
     const [activeCol, setActiveCol] = useState(null); 
+    const board = useSelector(state => state.board);
+    const player = useSelector(state => state.player);
+    const dispatch = useDispatch();
     const classes = useStyles();
     const colorPlayer = player === 1 ? "Red" : "Yellow";
 
@@ -30,7 +33,7 @@ const Board = ({ board, placePiece, player }) => {
             return (
                 <div 
                     onMouseEnter={() => setActiveCol(i)}
-                    onClick={() => placePiece(i, board, player)}
+                    onClick={() => dispatch(placePiece(i, board, player))}
                     key={i} 
                     className={`${classes.col} ${hover} ${red} ${yellow}`}>
                 </div>
@@ -47,20 +50,3 @@ const Board = ({ board, placePiece, player }) => {
         </Paper>
     );
 };
-
-const mapStateToProps = state => {
-    return {
-        board: state.board,
-        player: state.player,
-    }
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        placePiece: (columnIndex, board, player) => {
-            dispatch(placePiece(columnIndex, board, player));
-        },
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Board);

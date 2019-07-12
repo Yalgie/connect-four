@@ -2,9 +2,11 @@ import React from 'react';
 import Board from "./Board";
 import Start from "./Start";
 import End from "./End";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-const App = ({ gameStatus }) => {
+export default function App() {
+    const gameStatus = useSelector(state => state.gameStatus);
+
     switch (gameStatus) {
         case "Start":
             return <Start />
@@ -15,11 +17,3 @@ const App = ({ gameStatus }) => {
             return <Board />
     }
 };
-
-const mapStateToProps = state => {
-    return {
-        gameStatus: state.gameStatus,
-    }
-};
-
-export default connect(mapStateToProps)(App);

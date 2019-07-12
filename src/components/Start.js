@@ -1,12 +1,13 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { startGame } from "../store/actions";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import useStyles from "./styles/app";
 
-const Start = ({ startGame }) => {
+export default function Start() {
+    const dispatch = useDispatch();
     const classes = useStyles();
     
     return (
@@ -19,14 +20,14 @@ const Start = ({ startGame }) => {
             </Typography>
             <Button 
                 variant="contained" 
-                onClick={() => startGame(1)} 
+                onClick={() => dispatch(startGame(1))} 
                 className={classes.redButton}
             >
                 Red
             </Button>
             <Button 
                 variant="contained" 
-                onClick={() => startGame(2)} 
+                onClick={() => dispatch(startGame(2))} 
                 className={classes.yellowButton}
             >
                 Yellow
@@ -34,20 +35,3 @@ const Start = ({ startGame }) => {
         </Paper>
     );
 };
-
-const mapStateToProps = state => {
-    return {
-        gameStatus: state.gameStatus,
-        player: state.player,
-    }
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        startGame: player => {
-            dispatch(startGame(player));
-        },
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Start);
