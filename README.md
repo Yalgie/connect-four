@@ -22,8 +22,6 @@ Run the test by using:
 
 ```npm run jest```
 
-The tests check if all the win conditions and draw can be met.
-
 ## Tech Architecture
 - React v16.8
 - Redux v4 w/ Thunk Middleware
@@ -49,7 +47,7 @@ The tests check if all the win conditions and draw can be met.
 
 ## Improvements / Wishlist
 - Socket based multiplayer game where the game can be played on users own screens
-- Drag & Drop functionality where users have a pile of pieces and they can drag and drop them into the columns
+- Drag & Drop functionality where users have  a pile of pieces and they can drag and drop them into the columns
 - Animations of the pieces falling down the rows and having a bit of a bounce when it lands
-- I don't have much experience with Unit Testing but i'd like to add tests for the win conditions given I had more time
+- I don't have much experience with Unit Testing but i'd like to improve upon the tests written
 - Improve upon the basic UX & UI
